@@ -1,0 +1,31 @@
+{% extends 'mainapp/base.html' %}
+
+{% block title %}Survey List{% endblock %}
+
+{% block content %}
+<h1>Survey List</h1>
+<a class="btn btn-primary mb-3" href="{% url 'survey_create' %}">Add New Survey</a>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Regu</th>
+            <th>Tanggal</th>
+            <th>Point Regu</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for survey in surveys %}
+        <tr>
+            <td>{{ survey.regu.nama_regu }}</td>
+            <td>{{ survey.tanggal }}</td>
+            <td>{{ survey.point_regu }}</td>
+            <td>
+                <a class="btn btn-info" href="{% url 'survey_update' survey.pk %}">Edit</a>
+                <a class="btn btn-danger" href="{% url 'survey_delete' survey.pk %}">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

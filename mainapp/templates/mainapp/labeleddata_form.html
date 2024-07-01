@@ -1,0 +1,13 @@
+{% extends 'mainapp/base.html' %}
+
+{% block title %}Labeled Data Form{% endblock %}
+
+{% block content %}
+<h1>Labeled Data Form</h1>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-success">Save</button>
+    <a href="{% url 'labeleddata_list' %}" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %}

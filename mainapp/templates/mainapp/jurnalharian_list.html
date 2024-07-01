@@ -1,0 +1,35 @@
+{% extends 'mainapp/base.html' %}
+
+{% block title %}Jurnal Harian List{% endblock %}
+
+{% block content %}
+<h1>Jurnal Harian List</h1>
+<a class="btn btn-primary mb-3" href="{% url 'jurnalharian_create' %}">Add New Jurnal Harian</a>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Nama</th>
+            <th>Tanggal</th>
+            <th>SKP Tahunan</th>
+            <th>Regu</th>
+            <th>Jurnal Harian</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for jurnalharian in jurnalharians %}
+        <tr>
+            <td>{{ jurnalharian.nama }}</td>
+            <td>{{ jurnalharian.tanggal }}</td>
+            <td>{{ jurnalharian.skp_tahunan }}</td>
+            <td>{{ jurnalharian.regu.nama_regu }}</td>
+            <td>{{ jurnalharian.jurnal_harian }}</td>
+            <td>
+                <a class="btn btn-info" href="{% url 'jurnalharian_update' jurnalharian.pk %}">Edit</a>
+                <a class="btn btn-danger" href="{% url 'jurnalharian_delete' jurnalharian.pk %}">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

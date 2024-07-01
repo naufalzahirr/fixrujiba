@@ -1,0 +1,29 @@
+{% extends 'mainapp/base.html' %}
+
+{% block title %}Regu List{% endblock %}
+
+{% block content %}
+<h1>Regu List</h1>
+<a class="btn btn-primary mb-3" href="{% url 'regu_create' %}">Add New Regu</a>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nama Regu</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for regu in regus %}
+        <tr>
+            <td>{{ regu.id }}</td>
+            <td>{{ regu.nama_regu }}</td>
+            <td>
+                <a class="btn btn-info" href="{% url 'regu_update' regu.pk %}">Edit</a>
+                <a class="btn btn-danger" href="{% url 'regu_delete' regu.pk %}">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

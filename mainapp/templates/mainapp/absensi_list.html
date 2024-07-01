@@ -1,0 +1,39 @@
+{% extends 'mainapp/base.html' %}
+
+{% block title %}Absensi List{% endblock %}
+
+{% block content %}
+<h1>Absensi List</h1>
+<a class="btn btn-primary mb-3" href="{% url 'absensi_create' %}">Add New Absensi</a>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>NIP</th>
+            <th>Tanggal</th>
+            <th>Nama</th>
+            <th>Unit Kerja</th>
+            <th>Regu</th>
+            <th>Terlambat</th>
+            <th>Pulang Cepat</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for absensi in absensis %}
+        <tr>
+            <td>{{ absensi.nip }}</td>
+            <td>{{ absensi.tanggal }}</td>
+            <td>{{ absensi.nama }}</td>
+            <td>{{ absensi.unit_kerja }}</td>
+            <td>{{ absensi.regu.nama_regu }}</td>
+            <td>{{ absensi.terlambat }}</td>
+            <td>{{ absensi.pulang_cepat }}</td>
+            <td>
+                <a class="btn btn-info" href="{% url 'absensi_update' absensi.pk %}">Edit</a>
+                <a class="btn btn-danger" href="{% url 'absensi_delete' absensi.pk %}">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

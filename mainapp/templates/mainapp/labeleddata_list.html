@@ -1,0 +1,35 @@
+{% extends 'mainapp/base.html' %}
+
+{% block title %}Labeled Data List{% endblock %}
+
+{% block content %}
+<h1>Labeled Data List</h1>
+<a class="btn btn-primary mb-3" href="{% url 'labeleddata_create' %}">Add New Labeled Data</a>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Regu</th>
+            <th>Nilai Absen</th>
+            <th>Nilai Jurnal</th>
+            <th>Nilai Kuisioner</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for labeleddata in labeleddatas %}
+        <tr>
+            <td>{{ labeleddata.regu }}</td>
+            <td>{{ labeleddata.nilai_absen }}</td>
+            <td>{{ labeleddata.nilai_jurnal }}</td>
+            <td>{{ labeleddata.nilai_kuisioner }}</td>
+            <td>{{ labeleddata.status }}</td>
+            <td>
+                <a class="btn btn-info" href="{% url 'labeleddata_update' labeleddata.pk %}">Edit</a>
+                <a class="btn btn-danger" href="{% url 'labeleddata_delete' labeleddata.pk %}">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
